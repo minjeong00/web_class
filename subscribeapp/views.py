@@ -17,13 +17,13 @@ class SubscriptionView(RedirectView):
         user = request.user
         project = Project.objects.get(pk=kwargs['project_pk'])
 
-        subscription = Subscription.objects.filter(user=user, project=project)
+        subscription = Subscription.objects.filter(user=user,
+                                                   project=project)
 
         if subscription.exists():
             subscription.delete()
         else:
             Subscription(user=user, project=project).save()
-
         return super().get(request, *args, **kwargs)
 
     def get_redirect_url(self, *args, **kwargs):
