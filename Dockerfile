@@ -2,7 +2,7 @@ FROM python:3.9.0
 
 WORKDIR /home/
 
-RUN git clone https://github.com/minjeong00/web_class.git
+RUN git clone https://github.com/minjeong00/web_class-7-1-.git
 
 WORKDIR /home/web_class-7-1-/
 
