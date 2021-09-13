@@ -10,8 +10,12 @@ RUN echo "SECRET_KEY=django-insecure-#e)yzs!kk9&0$t@#mdu8v-71t(gf__qtreyrinvzn(#
 
 RUN pip install -r requirements.txt
 
+RUN pip install gunicorn
+
 RUN python manage.py migrate
+
+RUN python manage.py collectstatic
 
 EXPOSE 8000
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["gunicorn", "temp.wsgi", "--bind", "0.0.0.0:8000"]
