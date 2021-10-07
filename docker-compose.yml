@@ -4,14 +4,17 @@ services:
   nginx:
     image: nginx:1.19.5
     ports:
-      - 80:80
+      - mode: host
+        protocol: tcp
+        target: 80
+        published: 80
     networks:
       - gis_web_network
     volumes:
       - /home/giguda9127/nginx.conf:/etc/nginx/nginx.conf
       - gis_web_application_static:/data/static/
       - gis_web_application_media:/data/media/
-      - - gis_log:/var/log/nginx/
+      - gis_log:/var/log/nginx/
 
   django:
     image: gis_web_application:5
